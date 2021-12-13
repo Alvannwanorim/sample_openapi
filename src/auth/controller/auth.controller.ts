@@ -35,8 +35,8 @@ export class AuthController {
     return this.authService.getUser(req.user);
   }
   @UseGuards(JwtGuard)
-  @Get()
-  getAllUser(@Request() req) {
+  @Get('users')
+  getAllUser() {
     return this.authService.getUsers();
   }
 }
