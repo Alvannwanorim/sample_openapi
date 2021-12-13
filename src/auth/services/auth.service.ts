@@ -49,7 +49,9 @@ export class AuthService {
       const user = await this.userModel.findOne({ email });
 
       if (!user) {
-        throw new NotFoundException(`this ${email} does not exist`);
+        return {
+          message: `this user with email:${email} does not exist`,
+        };
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
