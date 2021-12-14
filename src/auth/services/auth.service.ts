@@ -6,7 +6,11 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { CreateUserInput, LoginUserInput } from '../inputs/user.input';
+import {
+  CreateUserInput,
+  LoginUserInput,
+  UpdateUserInput,
+} from '../inputs/user.input';
 import { User, UserDocument } from '../models/user.entity';
 import { JwtService } from '@nestjs/jwt';
 
@@ -96,6 +100,47 @@ export class AuthService {
       const users = await this.userModel.find().select('-password');
 
       return users;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async deleteUser(user: any) {
+    const { id } = user;
+    try {
+      const user = await this.userModel.findById(id);
+
+      if (!user) {
+        return {
+          message: 'Iser not found',
+        };
+      }
+
+      await this.userModel.deleteOne(id);
+      return {
+        message: 'User deleted succesfully',
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async updateUser(input: UpdateUserInput, user: any) {
+    const { id } = user;
+    try {
+      const user = await this.userModel.findById(id);
+
+      if (!user) {
+        return {
+          message: 'Iser not found',
+        };
+      }
+
+      const updatedUsed = await this.userModel.findByIdAndUpdate(
+        id,
+        { input },
+        { new: true },
+      );
+      return updatedUsed;
     } catch (err) {
       console.log(err);
     }

@@ -62,6 +62,17 @@ export class CreateUserInput {
   @MaxLength(50)
   password: string;
 }
+export class UpdateUserInput {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  firstName: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  lastName: string;
+}
 
 export class LoginUserInput {
   @ApiProperty()
