@@ -108,15 +108,13 @@ export class AuthService {
   async deleteUser(user: any) {
     const { id } = user;
     try {
-      const user = await this.userModel.findById(id);
+      const user = await this.userModel.findByIdAndDelete(id);
 
       if (!user) {
         return {
-          message: 'Iser not found',
+          message: 'User not found',
         };
       }
-
-      await this.userModel.deleteOne(id);
       return {
         message: 'User deleted succesfully',
       };
@@ -126,20 +124,21 @@ export class AuthService {
   }
   async updateUser(input: UpdateUserInput, user: any) {
     const { id } = user;
+    const { firstName, lastName } = input;
+
+    const userUpdates = { firstName, lastName };
     try {
-      const user = await this.userModel.findById(id);
-
-      if (!user) {
-        return {
-          message: 'Iser not found',
-        };
-      }
-
       const updatedUsed = await this.userModel.findByIdAndUpdate(
         id,
-        { input },
+        userUpdates,
         { new: true },
       );
+
+      if (!updatedUsed) {
+        return {
+          message: 'User not found',
+        };
+      }
       return updatedUsed;
     } catch (err) {
       console.log(err);

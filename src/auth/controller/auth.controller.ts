@@ -140,7 +140,7 @@ export class AuthController {
     description: 'Not Acceptable.',
   })
   @ApiResponse({ status: 404, type: ErrorMessage, description: 'Not Found.' })
-  @Put('users')
+  @Put('user')
   updateUser(@Body() input: UpdateUserInput, @Request() req) {
     return this.authService.updateUser(input, req.user);
   }
@@ -161,7 +161,7 @@ export class AuthController {
     description: 'Not Acceptable.',
   })
   @ApiResponse({ status: 404, type: ErrorMessage, description: 'Not Found.' })
-  @Delete('users')
+  @Delete('user')
   deleteUser(@Request() req) {
     return this.authService.deleteUser(req.user);
   }
