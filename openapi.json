@@ -1,0 +1,475 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "operationId": "craeteUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateUserInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The record has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDTO" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request .",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "loginUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginUserInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The record has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDTO" }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupport Media Format.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth": {
+      "get": {
+        "operationId": "getUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Creates new user object.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDTO" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/users": {
+      "get": {
+        "operationId": "getAllUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": " user array.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDTO" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    },
+    "/auth/user": {
+      "put": {
+        "operationId": "updateUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateUserInput" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          },
+          "201": {
+            "description": " user array.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserDTO" }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      },
+      "delete": {
+        "operationId": "deleteUser",
+        "parameters": [],
+        "responses": {
+          "200": { "description": "" },
+          "201": {
+            "description": " user deleted.",
+            "content": {
+              "application/json": { "schema": { "type": "string" } }
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+              }
+            }
+          }
+        },
+        "tags": ["auth"],
+        "security": [{ "bearer": [] }]
+      }
+    }
+  },
+  "info": {
+    "title": "My API",
+    "description": "An API to do awesome things",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [{ "url": "https://simpleopenapi.herokuapp.com/" }],
+  "components": {
+    "securitySchemes": {
+      "bearer": { "scheme": "bearer", "bearerFormat": "JWT", "type": "http" }
+    },
+    "schemas": {
+      "CreateUserInput": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "for firstname",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "lastName": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "email": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "password": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 50,
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$"
+          }
+        },
+        "required": ["firstName", "lastName", "email", "password"]
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "lastName": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "email": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "password": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "role": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          }
+        },
+        "required": ["firstName", "lastName", "email", "password", "role"]
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 50,
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$"
+          }
+        },
+        "required": ["message"]
+      },
+      "LoginUserInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "for email",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "password": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 50,
+            "description": "for password",
+            "pattern": "^[A-Za-z0-9]{3,10}$"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "UpdateUserInput": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "for first name",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          },
+          "lastName": {
+            "type": "string",
+            "description": "for last name ",
+            "pattern": "^[A-Za-z0-9]{3,10}$",
+            "maxLength": 50,
+            "minLength": 10
+          }
+        },
+        "required": ["firstName", "lastName"]
+      }
+    }
+  }
+}

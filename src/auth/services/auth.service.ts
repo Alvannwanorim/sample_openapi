@@ -10,7 +10,7 @@ import {
   CreateUserInput,
   LoginUserInput,
   UpdateUserInput,
-} from '../inputs/user.input';
+} from '../DTO/user.dto';
 import { User, UserDocument } from '../models/user.entity';
 import { JwtService } from '@nestjs/jwt';
 

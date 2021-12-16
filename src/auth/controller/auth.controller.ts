@@ -8,7 +8,15 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiExtraModels,
+  ApiProperty,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { JwtGuard } from '../guards/jwt.guard';
 import {
   CreateUserInput,
@@ -16,7 +24,7 @@ import {
   LoginUserInput,
   UpdateUserInput,
   UserDTO,
-} from '../inputs/user.input';
+} from '../DTO/user.dto';
 import { AuthService } from '../services/auth.service';
 
 @ApiTags('auth')
@@ -29,8 +37,10 @@ export class AuthController {
   //@Route: /auth/register
   //@Acess: Public
   @ApiBody({ type: CreateUserInput })
+  @ApiProperty({ additionalProperties: false })
   @ApiResponse({
     status: 201,
+    type: UserDTO,
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 404, type: ErrorMessage, description: 'Not Found.' })
@@ -39,6 +49,11 @@ export class AuthController {
     status: 400,
     type: ErrorMessage,
     description: 'Bad Request .',
+  })
+  @ApiResponse({
+    status: 415,
+    type: ErrorMessage,
+    description: 'Unsupported Media',
   })
   @ApiResponse({
     status: 401,
@@ -61,6 +76,7 @@ export class AuthController {
   @ApiBody({ type: LoginUserInput })
   @ApiResponse({
     status: 201,
+    type: UserDTO,
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 403, type: ErrorMessage, description: 'Forbidden.' })
@@ -70,6 +86,11 @@ export class AuthController {
     status: 401,
     type: ErrorMessage,
     description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 415,
+    type: ErrorMessage,
+    description: 'Unsupport Media Format.',
   })
   @ApiResponse({
     status: 406,
@@ -86,7 +107,7 @@ export class AuthController {
   //@Acess: Public
   @UseGuards(JwtGuard)
   @ApiResponse({
-    status: 201,
+    status: 200,
     type: UserDTO,
     description: 'Creates new user object.',
   })
@@ -107,8 +128,8 @@ export class AuthController {
   //@Acess: Public
   @UseGuards(JwtGuard)
   @ApiResponse({
-    status: 201,
-    type: [UserDTO],
+    status: 200,
+    type: UserDTO,
     description: ' user array.',
   })
   @ApiResponse({ status: 403, type: ErrorMessage, description: 'Forbidden.' })
@@ -151,8 +172,8 @@ export class AuthController {
   @UseGuards(JwtGuard)
   @ApiResponse({
     status: 201,
-    type: [UserDTO],
-    description: ' user array.',
+    type: String,
+    description: ' user deleted.',
   })
   @ApiResponse({ status: 403, type: ErrorMessage, description: 'Forbidden.' })
   @ApiResponse({
