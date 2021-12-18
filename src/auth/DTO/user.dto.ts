@@ -106,6 +106,7 @@ export class CreateUserInput {
     pattern: '^[A-Za-z0-9]{3,10}$',
     maxLength: 50,
     minLength: 10,
+    additionalProperties: false,
   })
   @IsNotEmpty()
   @IsString()
